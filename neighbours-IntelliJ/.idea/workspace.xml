@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bf4bff32-45c3-4c8b-b927-20a2e2ecdc1f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex1LoopPuzzlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex1LoopPuzzlers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex2SumSeries.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex2SumSeries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex3ArrayMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex3ArrayMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex4Theory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex4Theory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex5MedianKthSmallest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex5MedianKthSmallest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex6PointOfInequality.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex6PointOfInequality.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex7GenericMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex7GenericMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex8LCRSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek3/src/Ex8LCRSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex1WordCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex1WordCount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex2PigLatin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex2PigLatin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex3ReadNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex3ReadNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex4CheckParen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex4CheckParen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex5StringOrdering.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex5StringOrdering.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex6SplitList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex6SplitList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex7Grouping.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex7Grouping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex8SJT.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek4/src/Ex8SJT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex1useaclass/Ex1TestRational.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex1useaclass/Ex1TestRational.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex1useaclass/Rational.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex1useaclass/Rational.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex2usemoreclasses/Ex2TestPointTriangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex2usemoreclasses/Ex2TestPointTriangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex2usemoreclasses/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex2usemoreclasses/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex2usemoreclasses/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex2usemoreclasses/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/CLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/CLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/HangMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/HangMan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/Man.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/Man.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/Secret.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/ex4hangman/Secret.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/exercises5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek5/src/exercises5.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/TestCarVan.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/TestCarVan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/Van.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/Van.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex1inheritance/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/AsteroidsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/AsteroidsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/solution/AbstractMovable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/solution/AbstractPositionable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/solution/Asteroid.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/solution/Asteroids.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/solution/AsteroidsGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/ex2asteroids/solution/Spaceship.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/exercises6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../common/xer/OUT/xerweek6/src/exercises6.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="neighbours" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1VBufnKJIOOEv0P2o9iA1ZoKR2J" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration name="Neighbours" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Neighbours" />
+      <module name="neighbours" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/devel/java/javafx-sdk-13.0.1/lib --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Neighbours" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf4bff32-45c3-4c8b-b927-20a2e2ecdc1f" name="Default" comment="" />
+      <created>1488451750302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1488451750302</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="164" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579101082993">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state x="164" y="181" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1248.1024@0.0.1248.1024" timestamp="1579101082993" />
+    <state x="385" y="278" width="526" height="480" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1576739096152">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state x="385" y="278" width="526" height="480" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1248.1024@0.0.1248.1024" timestamp="1576739096152" />
+    <state x="439" y="281" width="426" height="480" key="FileChooserDialogImpl" timestamp="1579241356607">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state x="439" y="281" width="426" height="480" key="FileChooserDialogImpl/0.0.1248.1024@0.0.1248.1024" timestamp="1579241356607" />
+    <state width="1135" height="152" key="GridCell.Tab.0.bottom" timestamp="1576753817512">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state width="1135" height="152" key="GridCell.Tab.0.bottom/0.0.1248.1024@0.0.1248.1024" timestamp="1576753817512" />
+    <state width="1135" height="152" key="GridCell.Tab.0.center" timestamp="1576753817510">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state width="1135" height="152" key="GridCell.Tab.0.center/0.0.1248.1024@0.0.1248.1024" timestamp="1576753817510" />
+    <state width="1135" height="152" key="GridCell.Tab.0.left" timestamp="1576753817509">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state width="1135" height="152" key="GridCell.Tab.0.left/0.0.1248.1024@0.0.1248.1024" timestamp="1576753817509" />
+    <state width="1135" height="152" key="GridCell.Tab.0.right" timestamp="1576753817511">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state width="1135" height="152" key="GridCell.Tab.0.right/0.0.1248.1024@0.0.1248.1024" timestamp="1576753817511" />
+    <state x="139" y="100" width="1026" height="841" key="SettingsEditor" timestamp="1576743848047">
+      <screen x="0" y="0" width="1248" height="1024" />
+    </state>
+    <state x="139" y="100" width="1026" height="841" key="SettingsEditor/0.0.1248.1024@0.0.1248.1024" timestamp="1576743848046" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+</project>
