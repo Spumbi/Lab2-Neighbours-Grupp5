@@ -26,6 +26,8 @@ import static java.lang.System.*;
 // Extends Application because of JavaFX (just accept for now)
 public class Neighbours extends Application {
 
+    final Random rand = new Random();
+
     class Actor {
         final Color color;        // Color an existing JavaFX class
         boolean isSatisfied;      // false by default
@@ -53,7 +55,7 @@ public class Neighbours extends Application {
     // That's why we must have "@Override" and "public" (just accept for now)
     @Override
     public void init() {
-        test();    // <---------------- Uncomment to TEST!
+        //test();    // <---------------- Uncomment to TEST!
 
         // %-distribution of RED, BLUE and NONE
         double[] dist = {0.25, 0.25, 0.50};
@@ -61,6 +63,9 @@ public class Neighbours extends Application {
         int nLocations = 900;   // Should also try 90 000
 
         // TODO initialize the world
+        Actor[] actors = generateDistribution(nLocations, dist);
+        shuffle(actors);
+        world = toMatrix(actors);
 
         // Should be last
         fixScreenSize(nLocations);
@@ -98,6 +103,10 @@ public class Neighbours extends Application {
         out.println(!isValidLocation(size, 0, 3));
 
         // TODO
+        //out.println("Neighbours: " + neighbours(testWorld, 0, 1));'
+
+        testWorld = please(testWorld);
+        out.println(testWorld[0][1].isSatisfied);
 
         exit(0);
     }
@@ -168,6 +177,78 @@ public class Neighbours extends Application {
                 }
             }
         }
+    }
+
+    void shuffle(Actor[] arr) {
+        for (int i = arr.length; i > 1; i--) {
+            int j = rand.nextInt(i);
+            Actor tmp = arr[j];
+            arr[j] = arr[i - 1];
+            arr[i - 1] = tmp;
+        }
+    }
+
+    Actor[][] toMatrix(Actor[] arr) {
+        int size = (int) round(sqrt(arr.length));
+        Actor[][] matrix = new Actor[size][size];
+        for (int i = 0; i < arr.length; i++) {
+            matrix[i / size][i % size] = arr[i];
+        }
+        return matrix;
+    }
+
+    Actor[] generateDistribution(int n, double[] d) {
+        Actor[] array = new Actor[n];
+        int dist1 = (int) StrictMath.round(n * d[0]);
+        int dist2 = (int) StrictMath.round(n * d[1]);
+        for (int i = 0; i < dist1; i++) {
+            array[i] = new Actor(Color.RED);
+        }
+        for (int i = dist1; i < dist1 + dist2; i++) {
+            array[i] = new Actor(Color.BLUE);
+        }
+        return array;
+    }
+
+    boolean neighbours(Actor[][] w, int row, int col) {
+        int n = 0;
+        int c = 0;
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (isValidLocation(w.length, i, j) && !(i == row && j == col)) {
+                    if (w[i][j] != null) {
+                        n++;
+                        if (w[i][j].color == w[row][col].color) {
+                            c++;
+                        }
+                    }
+                }
+            }
+        }
+        return (c >= (n / 2));
+    }
+
+    Actor[][] please(Actor[][] w) {
+        Actor[][] temp = new Actor[w.length][w.length];
+        int[] indexForNulls = new int[w.length^2];
+        int t = 0;
+        for (int i = 0; i < w.length; i++) {
+            for (int j = 0; j < w.length; j++) {
+
+                if (w[i][j] != null) {
+                    if (neighbours(w, i, j)) {
+                        temp[i][j] = new Actor(w[i][j].color);
+                        temp[i][j].isSatisfied = true;
+                    }
+
+                } else {
+
+                    indexForNulls[t] = (i*w.length + j + 1);
+                    t++;
+                }
+            }
+        }
+        return temp;
     }
 
     public static void main(String[] args) {

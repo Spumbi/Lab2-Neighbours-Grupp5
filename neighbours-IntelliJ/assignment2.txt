@@ -10,13 +10,13 @@ Note for experienced programmer: This is exercising low level programming and ar
 This is a graphical program using JavaFX. All graphics is implemented you don't need
 to code any graphics (you may extend, make fancier if you like)
 
-1.  Implement the method init(). This method is automatically called by JavaFX at program startup
-    (before any graphics are visible on screen).
-    The method should initialize the Actor[][] world-variable with some distribution of actors to
-    be used in the simulation. Use the values for the dist and nLocations variables.
-    Empty locations are represented with null.
+1. Implement the method init(). This method is automatically called by JavaFX at program startup
+(before any graphics are visible on screen).
+The method should initialize the Actor[][] world-variable with some distribution of actors to
+be used in the simulation. Use the values for the dist and nLocations variables.
+Empty locations are represented with null.
 
-    NOTE: The Actor[][] world variable is the only variable allowed to be declared outside
+NOTE: The Actor[][] world variable is the only variable allowed to be declared outside
     any method (besides JavaFX stuff). It's only allowed to be accessed directly it in methods
     init() and updateWorld(). If needed elsewhere, send as parameter.
 
@@ -28,15 +28,17 @@ to code any graphics (you may extend, make fancier if you like)
     When finished is should be possible to see the dots on the screen when running (they will not move).
     HINT: Remember the exercises!
 
-2.  Now your task is to implement the method updateWorld() which will find all
-    dissatisfied actors (RED or BLUE) and move them to new (random, previously NOT occupied) positions,
-    until all are satisfied. All unsatisfied are moved at the same time, else a move may affect state
-    of other Actor. The nulls are never considered in any calculation.
-    The updateWorld() method is automatically called by a timer (you don't need to call it).
-    The updateWorld() method is *HUGE* if written as one single method!
-    If new to programming apply strategy as in 1. Make sketch etc.....
+2. Now your task is to implement the method updateWorld() which will find all
+dissatisfied actors (RED or BLUE) and move them to new (random, previously NOT occupied) positions,
+until all are satisfied. All unsatisfied are moved at the same time, else a move may affect state
+of other Actor. The nulls are never considered in any calculation.
 
-    HINT: See AlgForNeighbours.pdf
+The updateWorld() method is automatically called by a timer (you don't need to call it).
+The updateWorld() method is *HUGE* if written as one single method!
+If new to programming apply strategy as in 1. Make sketch etc.....
+
+HINT: See AlgForNeighbours.pdf
+
     NOTE: Not guaranteed to get all satisfied if selecting other values for dist and
     threshold variables (see code).
 
