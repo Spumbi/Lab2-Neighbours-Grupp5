@@ -47,7 +47,7 @@ public class Neighbours extends Application {
         double threshold = 0.7;
 
         // TODO update world
-        alg(world);
+        world = alg(world);
     }
 
     // This method initializes the world variable with a random distribution of Actors
@@ -55,17 +55,23 @@ public class Neighbours extends Application {
     // That's why we must have "@Override" and "public" (just accept for now)
     @Override
     public void init() {
-        test();    // <---------------- Uncomment to TEST!
+//        test();    // <---------------- Uncomment to TEST!
 
         // %-distribution of RED, BLUE and NONE
         double[] dist = {0.25, 0.25, 0.50};
         // Number of locations (places) in world (must be a square)
-        int nLocations = 900;   // Should also try 90 000
+        int nLocations = 90000;   // Should also try 90 000
 
         // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
+        out.println("actors.length1: " + actors.length);
+
         shuffle(actors);
+        out.println("actors.length2: " + actors.length);
+
         world = toMatrix(actors);
+
+        out.println("world.length: " + world.length);
 
         // Should be last
         fixScreenSize(nLocations);
@@ -84,7 +90,10 @@ public class Neighbours extends Application {
     }
 
     Actor[][] toMatrix(Actor[] arr) {
+//        out.println("arr.length: " + arr.length);
+//        out.println("sqrt(arr.lengt"): " + sqrt(arr.length));
         int size = (int) round(sqrt(arr.length));
+//        out.println("size: " + size);
         Actor[][] matrix = new Actor[size][size];
         for (int i = 0; i < arr.length; i++) {
             matrix[i / size][i % size] = arr[i];
@@ -94,6 +103,7 @@ public class Neighbours extends Application {
 
     Actor[] generateDistribution(int n, double[] d) {
         Actor[] array = new Actor[n];
+        out.println("array.length: " + array.length);
         int dist1 = (int) StrictMath.floor(n * d[0]);
         int dist2 = (int) StrictMath.floor(n * d[1]);
         int count1 = 0;
@@ -132,11 +142,12 @@ public class Neighbours extends Application {
     Actor[][] alg(Actor[][] w) {
         out.println("w.length: " + w.length);
         Actor[][] temp = new Actor[w.length][w.length];
-        Integer[] indexForNulls = new Integer[w.length*w.length];
+        Integer[] indexForNulls = new Integer[45000];
         out.println("indexForNulls.length: " + indexForNulls.length);
         int count1 = 0;
         int count2 = 0;
         int t = 0;
+        int big = (w.length^2)*10;
         for (int i = 0; i < w.length; i++) {
             for (int j = 0; j < w.length; j++) {
 
@@ -151,7 +162,7 @@ public class Neighbours extends Application {
                 } else {
                     count2++;
 //                    out.println("Använt");
-                    indexForNulls[t] = ((i+1)*w.length*100000 + j);
+                    indexForNulls[t] = ((i+1)*w.length*big + j);
                     t++;
                 }
             }
@@ -165,10 +176,13 @@ public class Neighbours extends Application {
             for (int j = 0; j < temp.length; j++) {
                 if (temp[i][j] != null) {
                     if(!temp[i][j].isSatisfied) {
+                        out.println("-----");
                         out.println("m: " + m);
-                        out.println("m value: " + indexForNulls[m]);
-                        row = ((indexForNulls[m]-i)/100000)/temp.length - 1;
-                        col = indexForNulls[m] % 100000;
+                        out.println("index value: " + indexForNulls[m]);
+                        out.println("i: " + i);
+                        out.println("j: " + j);
+                        col = indexForNulls[m] % big;
+                        row = ((indexForNulls[m]-col)/big)/temp.length - 1;
                         temp[row][col] = temp[i][j];
                         temp[i][j] = null;
                         m++;
@@ -177,6 +191,33 @@ public class Neighbours extends Application {
             }
         }
         return temp;
+    }
+
+    void printActors(Actor[][] testWorld) {
+        String print = "";
+        String s;
+        String co;
+        for (int i = 0; i < testWorld.length; i++) {
+            for (int j = 0; j < testWorld[i].length; j++) {
+                if (testWorld[i][j] != null) {
+                    if (testWorld[i][j].isSatisfied) {
+                        s = "T";
+                    } else {
+                        s = "F";
+                    }
+                    if (testWorld[i][j].color == Color.BLUE) {
+                        co = "B";
+                    } else {
+                        co = "R";
+                    }
+                    print = print + s + co + " ";
+                } else {
+                    print = print + "NU ";
+                }
+            }
+            out.println(print);
+            print = "";
+        }
     }
 
     // Check if inside world
@@ -195,21 +236,24 @@ public class Neighbours extends Application {
     void test() {
         // A small hard coded world for testing
         Actor[][] testWorld = new Actor[][]{
-                {new Actor(Color.RED), new Actor(Color.RED), null},
-                {null, new Actor(Color.BLUE), null},
-                {new Actor(Color.RED), null, new Actor(Color.BLUE)}
+                {new Actor(Color.RED), new Actor(Color.RED), null, null},
+                {null, new Actor(Color.BLUE), null, null},
+                {new Actor(Color.RED), null, new Actor(Color.BLUE), null},
+                {null, new Actor(Color.BLUE), new Actor(Color.BLUE), new Actor(Color.RED)}
+
         };
         double th = 0.5;   // Simple threshold used for testing
 
         int size = testWorld.length;
-        out.println(isValidLocation(size, 0, 0));
-        out.println(!isValidLocation(size, -1, 0));
-        out.println(!isValidLocation(size, 0, 3));
+//        out.println(isValidLocation(size, 0, 0));
+//        out.println(!isValidLocation(size, -1, 0));
+//        out.println(!isValidLocation(size, 0, 3));
 
         // TODO
         //out.println("Neighbours: " + neighbours(testWorld, 0, 1));'
-
-//        testWorld = alg(testWorld);
+        printActors(testWorld);
+        testWorld = alg(testWorld);
+        printActors(testWorld);
 //        out.println(testWorld[0][1].isSatisfied);
 
 //        int length = 3;
@@ -226,11 +270,23 @@ public class Neighbours extends Application {
         int nLocations = 900;   // Should also try 90 000
 
         // TODO initialize the world
-        Actor[] actors = generateDistribution(nLocations, dist);
-        shuffle(actors);
-        world = toMatrix(actors);
+//        Actor[] actors = generateDistribution(nLocations, dist);
+//        shuffle(actors);
+//        world = toMatrix(actors);
+//
+//        world = alg(world);
 
-        alg(world);
+//        FR FR NU NU
+//        NU FB NU NU
+//        FR NU FB NU
+//        NU FB FB FR
+
+//        ---
+
+//        TR TR NU NU
+//        FB NU NU FR
+//        NU FR TB NU
+//        NU TB TB NU
 
         exit(0);
     }
