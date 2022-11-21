@@ -44,8 +44,9 @@ public class Neighbours extends Application {
     // This is the method called by the timer to update the world
     // (i.e move unsatisfied) approx each 1/60 sec.
     void updateWorld() {
+        int rNeighbours = 4;
         // % of surrounding neighbours that are like me
-        double threshold = 0.55;
+        double threshold = 0.125 * rNeighbours;
 
         // TODO update world
         world = alg(world, threshold);
@@ -55,22 +56,25 @@ public class Neighbours extends Application {
     // Method automatically called by JavaFX runtime
     // That's why we must have "@Override" and "public" (just accept for now)
     @Override
-    public void init() {
-//        test();    // <---------------- Uncomment to TEST!
 
+    public void init() {
+        //test();    // <---------------- Uncomment to TEST!
+        double empty = 0.5;
+        double similar = 0.5;
+        double red = (1-empty)*similar;
+        double blue = 1-empty-red;
         // %-distribution of RED, BLUE and NONE
-        double[] dist = {0.25, 0.25, 0.5};
-        int size = 50;
+        double[] dist = {red, blue, empty};
+
+        int size = 350;
         // Number of locations (places) in world (must be a square)
         int nLocations = size*size;   // Should also try 90 000
         out.println("nLocations: " + nLocations);
 
         // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
-//        out.println("actors.length1: " + actors.length);
 
         shuffle(actors);
-//        out.println("actors.length2: " + actors.length);
 
         world = toMatrix(actors);
 
@@ -83,6 +87,85 @@ public class Neighbours extends Application {
     // ---------------  Methods ------------------------------
 
     // TODO Many ...
+    boolean pleased(Actor[][] w, int row, int col, double p) {
+        int n = 0;
+        int c = 0;
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (isValidLocation(w.length, i, j) && !(i == row && j == col)) {
+                    if (w[i][j] != null) {
+                        n++;
+                        if (w[i][j].color == w[row][col].color) {
+                            c++;
+                        }
+                    }
+                }
+            }
+        }
+        return (c >= (n * p));
+    }
+
+    Actor[][] alg(Actor[][] w, double p) {
+        int size = getNulls(w);
+        Actor[][] temp = new Actor[w.length][w.length];
+        Integer[] indexForNullsRow = new Integer[size];
+        Integer[] indexForNullsCol = new Integer[size];
+        Integer[] index = new Integer[size];
+        out.println("indexForNulls.length: " + indexForNullsRow.length);
+        out.println("index.length: " + index.length);
+        int t = 0;
+        for (int i = 0; i < size; i++) {
+            index[i] = i;
+        }
+        shuffle(index);
+        for (int i = 0; i < w.length; i++) {
+            for (int j = 0; j < w[i].length; j++) {
+                if (w[i][j] != null) {
+                    temp[i][j] = new Actor(w[i][j].color);
+                    if (pleased(w, i, j, p)) {
+                        temp[i][j].isSatisfied = true;
+                    }
+                } else {
+                    indexForNullsRow[index[t]] = i;
+                    indexForNullsCol[index[t]] = j;
+                    t++;
+                }
+            }
+        }
+        int m = 0;
+        int row;
+        int col;
+        for (int i = 0; i < w.length; i++) {
+            for (int j = 0; j < w[i].length; j++) {
+                if (w[i][j] != null) {
+                    if(!w[i][j].isSatisfied) {
+                        row = indexForNullsRow[m];
+                        col = indexForNullsCol[m];
+                        temp[row][col] = temp[i][j];
+                        temp[i][j] = null;
+                        indexForNullsRow[m] = i;
+                        indexForNullsCol[m] = j;
+                        m++;
+                        if (m == size - 1) {
+                            m = 0;
+                        }
+                    }
+                }
+            }
+        }
+        return temp;
+    }
+
+
+
+    // Check if inside world
+    boolean isValidLocation(int size, int row, int col) {
+        return 0 <= row && row < size && 0 <= col && col < size;
+    }
+
+    // ----------- Utility methods -----------------
+
+    // TODO (general method possible reusable elsewhere)
     <T> void shuffle(T[] arr) {
         for (int i = arr.length; i > 1; i--) {
             int j = rand.nextInt(i);
@@ -93,15 +176,39 @@ public class Neighbours extends Application {
     }
 
     Actor[][] toMatrix(Actor[] arr) {
-//        out.println("arr.length: " + arr.length);
-//        out.println("sqrt(arr.lengt"): " + sqrt(arr.length));
         int size = (int) round(sqrt(arr.length));
-//        out.println("size: " + size);
         Actor[][] matrix = new Actor[size][size];
         for (int i = 0; i < arr.length; i++) {
             matrix[i / size][i % size] = arr[i];
         }
         return matrix;
+    }
+
+    void printActors(Actor[][] testWorld) {
+        String print = "";
+        String s;
+        String co;
+        for (int i = 0; i < testWorld.length; i++) {
+            for (int j = 0; j < testWorld[i].length; j++) {
+                if (testWorld[i][j] != null) {
+                    if (testWorld[i][j].isSatisfied) {
+                        s = "T";
+                    } else {
+                        s = "F";
+                    }
+                    if (testWorld[i][j].color == Color.BLUE) {
+                        co = "B";
+                    } else {
+                        co = "R";
+                    }
+                    print = print + co + s + " ";
+                } else {
+                    print = print + "NN ";
+                }
+            }
+            out.println(print);
+            print = "";
+        }
     }
 
     Actor[] generateDistribution(int n, double[] d) {
@@ -124,121 +231,17 @@ public class Neighbours extends Application {
         return array;
     }
 
-    boolean pleased(Actor[][] w, int row, int col, double p) {
+    int getNulls(Actor[][] w) {
         int n = 0;
-        int c = 0;
-        for (int i = row - 1; i <= row + 1; i++) {
-            for (int j = col - 1; j <= col + 1; j++) {
-                if (isValidLocation(w.length, i, j) && !(i == row && j == col)) {
-                    if (w[i][j] != null) {
-                        n++;
-                        if (w[i][j].color == w[row][col].color) {
-                            c++;
-                        }
-                    }
-                }
-            }
-        }
-//        out.println("c: " + c);
-//        out.println("n * t: " + n * 0.50001);
-        return (c >= (n * p));
-    }
-
-    Actor[][] alg(Actor[][] w, double p) {
-//        out.println("w.length: " + w.length);
-        int size = (w.length*w.length)/2;
-        Actor[][] temp = new Actor[w.length][w.length];
-        Integer[] indexForNullsRow = new Integer[size];
-        Integer[] indexForNullsCol = new Integer[size];
-//        out.println("indexForNulls.length: " + indexForNulls.length);
-        int t = 0;
-        Integer[] index = new Integer[size];
-        for (int i = 0; i < index.length; i++) {
-            index[i] = i;
-        }
-        shuffle(index);
         for (int i = 0; i < w.length; i++) {
             for (int j = 0; j < w[i].length; j++) {
-                if (w[i][j] != null) {
-                    temp[i][j] = new Actor(w[i][j].color);
-                    if (pleased(w, i, j, p)) {
-                        temp[i][j].isSatisfied = true;
-                    }
-
-                } else {
-                    indexForNullsRow[index[t]] = i;
-                    indexForNullsCol[index[t]] = j;
-                    t++;
+                if(w[i][j] == null){
+                    n++;
                 }
             }
         }
-//        Actor[][] ret = new Actor[w.length][w.length];
-//        for (int i = 0; i < ret.length; i++) {
-//            for (int j = 0; j < ret[i].length; j++) {
-//                ret[i][j] = temp[i][j];
-//            }
-//        }
-        //out.println("Count sum: " + (count1 + count2));
-        int m = 0;
-        int row;
-        int col;
-//        out.println("temp.length: " + temp.length);
-        for (int i = 0; i < w.length; i++) {
-            for (int j = 0; j < w[i].length; j++) {
-                if (w[i][j] != null) {
-                    if(!w[i][j].isSatisfied) {
-//                        out.println("-----");
-//                        out.println("m: " + m);
-//                        out.println("index value: " + indexForNullsRow[m] + ", " + indexForNullsCol[m]);
-//                        out.println("i: " + i);
-//                        out.println("j: " + j);
-                        row = indexForNullsRow[m];
-                        col = indexForNullsCol[m];
-                        temp[row][col] = temp[i][j];
-                        temp[i][j] = null;
-                        m++;
-                    }
-                }
-            }
-        }
-        return temp;
+        return n;
     }
-
-    void printActors(Actor[][] testWorld) {
-        String print = "";
-        String s;
-        String co;
-        for (int i = 0; i < testWorld.length; i++) {
-            for (int j = 0; j < testWorld[i].length; j++) {
-                if (testWorld[i][j] != null) {
-                    if (testWorld[i][j].isSatisfied) {
-                        s = "T";
-                    } else {
-                        s = "F";
-                    }
-                    if (testWorld[i][j].color == Color.BLUE) {
-                        co = "B";
-                    } else {
-                        co = "R";
-                    }
-                    print = print + s + co + " ";
-                } else {
-                    print = print + "NU ";
-                }
-            }
-            out.println(print);
-            print = "";
-        }
-    }
-
-    // Check if inside world
-    boolean isValidLocation(int size, int row, int col) {
-        return 0 <= row && row < size && 0 <= col && col < size;
-    }
-
-    // ----------- Utility methods -----------------
-
-    // TODO (general method possible reusable elsewhere)
 
     // ------- Testing -------------------------------------
 
@@ -253,9 +256,8 @@ public class Neighbours extends Application {
                 {null, new Actor(Color.BLUE), new Actor(Color.BLUE), new Actor(Color.RED)}
 
         };
-        double th = 0.5;   // Simple threshold used for testing
+        double th = 0.55;   // Simple threshold used for testing
 
-        int size = testWorld.length;
 //        out.println(isValidLocation(size, 0, 0));
 //        out.println(!isValidLocation(size, -1, 0));
 //        out.println(!isValidLocation(size, 0, 3));
@@ -276,17 +278,22 @@ public class Neighbours extends Application {
 //        out.println("j: " + col);
 
         // %-distribution of RED, BLUE and NONE
-        double[] dist = {0.25, 0.25, 0.50};
+        double[] dist = {0.4, 0.4, 0.2};
         // Number of locations (places) in world (must be a square)
-        int nLocations = 900;   // Should also try 90 000
+        int nLocations = 100;   // Should also try 90 000
 
         // TODO initialize the world
-//        Actor[] actors = generateDistribution(nLocations, dist);
-//        shuffle(actors);
-//        world = toMatrix(actors);
-//
-//        world = alg(world);
+        Actor[] actors = generateDistribution(nLocations, dist);
+        shuffle(actors);
+        world = toMatrix(actors);
+        printActors(world);
 
+        world = alg(world, th);
+
+        printActors(world);
+        world = alg(world, th);
+
+        printActors(world);
 //        FR FR NU NU
 //        NU FB NU NU
 //        FR NU FB NU
