@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.Math.round;
@@ -64,10 +65,10 @@ public class Neighbours extends Application {
 
         // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
-        out.println("actors.length1: " + actors.length);
+//        out.println("actors.length1: " + actors.length);
 
         shuffle(actors);
-        out.println("actors.length2: " + actors.length);
+//        out.println("actors.length2: " + actors.length);
 
         world = toMatrix(actors);
 
@@ -103,7 +104,7 @@ public class Neighbours extends Application {
 
     Actor[] generateDistribution(int n, double[] d) {
         Actor[] array = new Actor[n];
-        out.println("array.length: " + array.length);
+        out.println("gD array.length: " + array.length);
         int dist1 = (int) StrictMath.floor(n * d[0]);
         int dist2 = (int) StrictMath.floor(n * d[1]);
         int count1 = 0;
@@ -136,53 +137,60 @@ public class Neighbours extends Application {
                 }
             }
         }
-        return (c >= (n / 2));
+//        out.println("c: " + c);
+//        out.println("n * t: " + n * 0.50001);
+        return (c >= (n * 0.5));
     }
 
     Actor[][] alg(Actor[][] w) {
-        out.println("w.length: " + w.length);
+//        out.println("w.length: " + w.length);
         Actor[][] temp = new Actor[w.length][w.length];
-        Integer[] indexForNulls = new Integer[45000];
-        out.println("indexForNulls.length: " + indexForNulls.length);
-        int count1 = 0;
-        int count2 = 0;
+        Integer[] indexForNullsRow = new Integer[45000];
+        Integer[] indexForNullsCol = new Integer[45000];
+//        out.println("indexForNulls.length: " + indexForNulls.length);
         int t = 0;
-        int big = (w.length^2)*10;
+        Integer[] index = new Integer[45000];
+        for (int i = 0; i < index.length; i++) {
+            index[i] = i;
+        }
+        shuffle(index);
         for (int i = 0; i < w.length; i++) {
-            for (int j = 0; j < w.length; j++) {
-
+            for (int j = 0; j < w[i].length; j++) {
                 if (w[i][j] != null) {
-                    count1++;
-//                    out.println("Denna ock");
                     temp[i][j] = new Actor(w[i][j].color);
                     if (pleased(w, i, j)) {
                         temp[i][j].isSatisfied = true;
                     }
 
                 } else {
-                    count2++;
-//                    out.println("Använt");
-                    indexForNulls[t] = ((i+1)*w.length*big + j);
+                    indexForNullsRow[index[t]] = i;
+                    indexForNullsCol[index[t]] = j;
                     t++;
                 }
             }
         }
-        out.println("Count sum: " + (count1 + count2));
-        shuffle(indexForNulls);
+//        Actor[][] ret = new Actor[w.length][w.length];
+//        for (int i = 0; i < ret.length; i++) {
+//            for (int j = 0; j < ret[i].length; j++) {
+//                ret[i][j] = temp[i][j];
+//            }
+//        }
+        //out.println("Count sum: " + (count1 + count2));
         int m = 0;
         int row;
         int col;
-        for (int i = 0; i < temp.length; i++) {
-            for (int j = 0; j < temp.length; j++) {
-                if (temp[i][j] != null) {
-                    if(!temp[i][j].isSatisfied) {
-                        out.println("-----");
-                        out.println("m: " + m);
-                        out.println("index value: " + indexForNulls[m]);
-                        out.println("i: " + i);
-                        out.println("j: " + j);
-                        col = indexForNulls[m] % big;
-                        row = ((indexForNulls[m]-col)/big)/temp.length - 1;
+//        out.println("temp.length: " + temp.length);
+        for (int i = 0; i < w.length; i++) {
+            for (int j = 0; j < w[i].length; j++) {
+                if (w[i][j] != null) {
+                    if(!w[i][j].isSatisfied) {
+//                        out.println("-----");
+//                        out.println("m: " + m);
+//                        out.println("index value: " + indexForNullsRow[m] + ", " + indexForNullsCol[m]);
+//                        out.println("i: " + i);
+//                        out.println("j: " + j);
+                        row = indexForNullsRow[m];
+                        col = indexForNullsCol[m];
                         temp[row][col] = temp[i][j];
                         temp[i][j] = null;
                         m++;
@@ -251,9 +259,9 @@ public class Neighbours extends Application {
 
         // TODO
         //out.println("Neighbours: " + neighbours(testWorld, 0, 1));'
-        printActors(testWorld);
-        testWorld = alg(testWorld);
-        printActors(testWorld);
+//        printActors(testWorld);
+//        testWorld = alg(testWorld);
+//        printActors(testWorld);
 //        out.println(testWorld[0][1].isSatisfied);
 
 //        int length = 3;
