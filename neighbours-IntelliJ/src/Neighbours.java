@@ -45,10 +45,10 @@ public class Neighbours extends Application {
     // (i.e move unsatisfied) approx each 1/60 sec.
     void updateWorld() {
         // % of surrounding neighbours that are like me
-        double threshold = 0.7;
+        double threshold = 0.55;
 
         // TODO update world
-        world = alg(world);
+        world = alg(world, threshold);
     }
 
     // This method initializes the world variable with a random distribution of Actors
@@ -59,9 +59,11 @@ public class Neighbours extends Application {
 //        test();    // <---------------- Uncomment to TEST!
 
         // %-distribution of RED, BLUE and NONE
-        double[] dist = {0.25, 0.25, 0.50};
+        double[] dist = {0.25, 0.25, 0.5};
+        int size = 50;
         // Number of locations (places) in world (must be a square)
-        int nLocations = 90000;   // Should also try 90 000
+        int nLocations = size*size;   // Should also try 90 000
+        out.println("nLocations: " + nLocations);
 
         // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
@@ -122,7 +124,7 @@ public class Neighbours extends Application {
         return array;
     }
 
-    boolean pleased(Actor[][] w, int row, int col) {
+    boolean pleased(Actor[][] w, int row, int col, double p) {
         int n = 0;
         int c = 0;
         for (int i = row - 1; i <= row + 1; i++) {
@@ -139,17 +141,18 @@ public class Neighbours extends Application {
         }
 //        out.println("c: " + c);
 //        out.println("n * t: " + n * 0.50001);
-        return (c >= (n * 0.5));
+        return (c >= (n * p));
     }
 
-    Actor[][] alg(Actor[][] w) {
+    Actor[][] alg(Actor[][] w, double p) {
 //        out.println("w.length: " + w.length);
+        int size = (w.length*w.length)/2;
         Actor[][] temp = new Actor[w.length][w.length];
-        Integer[] indexForNullsRow = new Integer[45000];
-        Integer[] indexForNullsCol = new Integer[45000];
+        Integer[] indexForNullsRow = new Integer[size];
+        Integer[] indexForNullsCol = new Integer[size];
 //        out.println("indexForNulls.length: " + indexForNulls.length);
         int t = 0;
-        Integer[] index = new Integer[45000];
+        Integer[] index = new Integer[size];
         for (int i = 0; i < index.length; i++) {
             index[i] = i;
         }
@@ -158,7 +161,7 @@ public class Neighbours extends Application {
             for (int j = 0; j < w[i].length; j++) {
                 if (w[i][j] != null) {
                     temp[i][j] = new Actor(w[i][j].color);
-                    if (pleased(w, i, j)) {
+                    if (pleased(w, i, j, p)) {
                         temp[i][j].isSatisfied = true;
                     }
 
