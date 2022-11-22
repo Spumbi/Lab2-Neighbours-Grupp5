@@ -59,17 +59,17 @@ public class Neighbours extends Application {
 
     public void init() {
         //test();    // <---------------- Uncomment to TEST!
-        double empty = 0.5;
-        double similar = 0.5;
-        double red = (1-empty)*similar;
+        double empty = 0.45;
+        double redBlueRatio = 0.5;
+        double red = (1-empty)*redBlueRatio;
         double blue = 1-empty-red;
         // %-distribution of RED, BLUE and NONE
         double[] dist = {red, blue, empty};
 
-        int size = 350;
+        int size = 300;
         // Number of locations (places) in world (must be a square)
         int nLocations = size*size;   // Should also try 90 000
-        out.println("nLocations: " + nLocations);
+        out.println("Locations: " + nLocations);
 
         // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
@@ -78,8 +78,6 @@ public class Neighbours extends Application {
 
         world = toMatrix(actors);
 
-        out.println("world.length: " + world.length);
-
         // Should be last
         fixScreenSize(nLocations);
     }
@@ -87,6 +85,26 @@ public class Neighbours extends Application {
     // ---------------  Methods ------------------------------
 
     // TODO Many ...
+    Actor[] generateDistribution(int n, double[] d) {
+        Actor[] array = new Actor[n];
+        int dist1 = (int) StrictMath.round(n * d[0]);
+        int dist2 = (int) StrictMath.round(n * d[1]);
+        int count1 = 0;
+        int count2 = 0;
+        for (int i = 0; i < dist1; i++) {
+            array[i] = new Actor(Color.RED);
+            count1++;
+        }
+        for (int i = dist1; i < dist1 + dist2; i++) {
+            array[i] = new Actor(Color.BLUE);
+            count2++;
+        }
+        out.println("Number of RED: " + count1);
+        out.println("Number of BLUE: " + count2);
+        out.println("Number of Empty: " + (n - count1 - count2));
+        return array;
+    }
+
     boolean pleased(Actor[][] w, int row, int col, double p) {
         int n = 0;
         int c = 0;
@@ -111,8 +129,6 @@ public class Neighbours extends Application {
         Integer[] indexForNullsRow = new Integer[size];
         Integer[] indexForNullsCol = new Integer[size];
         Integer[] index = new Integer[size];
-        out.println("indexForNulls.length: " + indexForNullsRow.length);
-        out.println("index.length: " + index.length);
         int t = 0;
         for (int i = 0; i < size; i++) {
             index[i] = i;
@@ -211,26 +227,6 @@ public class Neighbours extends Application {
         }
     }
 
-    Actor[] generateDistribution(int n, double[] d) {
-        Actor[] array = new Actor[n];
-        out.println("gD array.length: " + array.length);
-        int dist1 = (int) StrictMath.floor(n * d[0]);
-        int dist2 = (int) StrictMath.floor(n * d[1]);
-        int count1 = 0;
-        int count2 = 0;
-        for (int i = 0; i < dist1; i++) {
-            array[i] = new Actor(Color.RED);
-            count1++;
-        }
-        for (int i = dist1; i < dist1 + dist2; i++) {
-            array[i] = new Actor(Color.BLUE);
-            count2++;
-        }
-        out.println("Number of RED: " + count1);
-        out.println("Number of BLUE: " + count2);
-        return array;
-    }
-
     int getNulls(Actor[][] w) {
         int n = 0;
         for (int i = 0; i < w.length; i++) {
@@ -294,17 +290,7 @@ public class Neighbours extends Application {
         world = alg(world, th);
 
         printActors(world);
-//        FR FR NU NU
-//        NU FB NU NU
-//        FR NU FB NU
-//        NU FB FB FR
 
-//        ---
-
-//        TR TR NU NU
-//        FB NU NU FR
-//        NU FR TB NU
-//        NU TB TB NU
 
         exit(0);
     }
