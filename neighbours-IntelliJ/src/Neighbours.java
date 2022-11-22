@@ -44,13 +44,17 @@ public class Neighbours extends Application {
     // This is the method called by the timer to update the world
     // (i.e move unsatisfied) approx each 1/60 sec.
     void updateWorld() {
-        int rNeighbours = 4;
+        int rNeighbours = 5;
         // % of surrounding neighbours that are like me
         double threshold = 0.125 * rNeighbours;
+        int numberOfNulls = getNulls(world);
+        Integer[] indexForNullsRow = new Integer[numberOfNulls];
+        Integer[] indexForNullsCol = new Integer[numberOfNulls];
 
         // TODO update world
-        world = alg(world, threshold);
+        world = alg(world, threshold, indexForNullsRow, indexForNullsCol);
     }
+
 
     // This method initializes the world variable with a random distribution of Actors
     // Method automatically called by JavaFX runtime
@@ -59,7 +63,7 @@ public class Neighbours extends Application {
 
     public void init() {
         //test();    // <---------------- Uncomment to TEST!
-        double empty = 0.45;
+        double empty = 0.3;
         double redBlueRatio = 0.5;
         double red = (1-empty)*redBlueRatio;
         double blue = 1-empty-red;
@@ -123,14 +127,11 @@ public class Neighbours extends Application {
         return (c >= (n * p));
     }
 
-    Actor[][] alg(Actor[][] w, double p) {
-        int size = getNulls(w);
+    Actor[][] alg(Actor[][] w, double p, Integer[] indexForNullsRow, Integer[] indexForNullsCol) {
         Actor[][] temp = new Actor[w.length][w.length];
-        Integer[] indexForNullsRow = new Integer[size];
-        Integer[] indexForNullsCol = new Integer[size];
-        Integer[] index = new Integer[size];
+        Integer[] index = new Integer[indexForNullsRow.length];
         int t = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < index.length; i++) {
             index[i] = i;
         }
         shuffle(index);
@@ -148,23 +149,23 @@ public class Neighbours extends Application {
                 }
             }
         }
-        int m = 0;
+        t = 0;
         int row;
         int col;
         for (int i = 0; i < w.length; i++) {
             for (int j = 0; j < w[i].length; j++) {
                 if (w[i][j] != null) {
                     if(!w[i][j].isSatisfied) {
-                        row = indexForNullsRow[m];
-                        col = indexForNullsCol[m];
+                        if (t == index.length) {
+                            t = 0;
+                        }
+                        row = indexForNullsRow[t];
+                        col = indexForNullsCol[t];
                         temp[row][col] = temp[i][j];
                         temp[i][j] = null;
-                        indexForNullsRow[m] = i;
-                        indexForNullsCol[m] = j;
-                        m++;
-                        if (m == size - 1) {
-                            m = 0;
-                        }
+                        indexForNullsRow[t] = i;
+                        indexForNullsCol[t] = j;
+                        t++;
                     }
                 }
             }
@@ -279,17 +280,17 @@ public class Neighbours extends Application {
         int nLocations = 100;   // Should also try 90 000
 
         // TODO initialize the world
-        Actor[] actors = generateDistribution(nLocations, dist);
-        shuffle(actors);
-        world = toMatrix(actors);
-        printActors(world);
-
-        world = alg(world, th);
-
-        printActors(world);
-        world = alg(world, th);
-
-        printActors(world);
+//        Actor[] actors = generateDistribution(nLocations, dist);
+//        shuffle(actors);
+//        world = toMatrix(actors);
+//        printActors(world);
+//
+//        world = alg(world, th);
+//
+//        printActors(world);
+//        world = alg(world, th);
+//
+//        printActors(world);
 
 
         exit(0);
@@ -297,7 +298,7 @@ public class Neighbours extends Application {
 
     // ******************** NOTHING to do below this row, it's JavaFX stuff  **************
 
-    double width = 500;   // Size for window
+    double width = 500;   // size for window
     double height = 500;
     final double margin = 50;
     double dotSize;
@@ -313,7 +314,7 @@ public class Neighbours extends Application {
     }
 
     long lastUpdateTime;
-    final long INTERVAL = 450_000_000;
+    final long INTERVAL = 200_000_000;
 
 
     @Override
