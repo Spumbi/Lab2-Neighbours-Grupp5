@@ -44,15 +44,14 @@ public class Neighbours extends Application {
     // This is the method called by the timer to update the world
     // (i.e move unsatisfied) approx each 1/60 sec.
     void updateWorld() {
-        int rNeighbours = 5;
+        int rNeighbours = 7;
         // % of surrounding neighbours that are like me
         double threshold = 0.125 * rNeighbours;
-        int numberOfNulls = getNulls(world);
-        Integer[] indexForNullsRow = new Integer[numberOfNulls];
-        Integer[] indexForNullsCol = new Integer[numberOfNulls];
 
+//        printActors(world);
+//        out.println("------");
         // TODO update world
-        world = alg(world, threshold, indexForNullsRow, indexForNullsCol);
+        world = alg(threshold);
     }
 
 
@@ -63,7 +62,7 @@ public class Neighbours extends Application {
 
     public void init() {
         //test();    // <---------------- Uncomment to TEST!
-        double empty = 0.3;
+        double empty = 0.25;
         double redBlueRatio = 0.5;
         double red = (1-empty)*redBlueRatio;
         double blue = 1-empty-red;
@@ -109,15 +108,15 @@ public class Neighbours extends Application {
         return array;
     }
 
-    boolean pleased(Actor[][] w, int row, int col, double p) {
+    boolean pleased(int row, int col, double p) {
         int n = 0;
         int c = 0;
         for (int i = row - 1; i <= row + 1; i++) {
             for (int j = col - 1; j <= col + 1; j++) {
-                if (isValidLocation(w.length, i, j) && !(i == row && j == col)) {
-                    if (w[i][j] != null) {
+                if (isValidLocation(world.length, i, j) && !(i == row && j == col)) {
+                    if (world[i][j] != null) {
                         n++;
-                        if (w[i][j].color == w[row][col].color) {
+                        if (world[i][j].color == world[row][col].color) {
                             c++;
                         }
                     }
@@ -127,19 +126,28 @@ public class Neighbours extends Application {
         return (c >= (n * p));
     }
 
-    Actor[][] alg(Actor[][] w, double p, Integer[] indexForNullsRow, Integer[] indexForNullsCol) {
-        Actor[][] temp = new Actor[w.length][w.length];
+    Actor[][] alg(double p) {
+        int numberOfNulls = getNulls(world);
+        int[] indexForNullsRow = new int[numberOfNulls];
+        int[] indexForNullsCol = new int[numberOfNulls];
+        Actor[][] temp = new Actor[world.length][world.length];
+        makeArrays(temp,p,indexForNullsRow,indexForNullsCol);
+        moveActors(temp,numberOfNulls,indexForNullsRow,indexForNullsCol);
+        return temp;
+    }
+
+    void makeArrays(Actor[][] temp, double p, int[] indexForNullsRow, int[] indexForNullsCol){
         Integer[] index = new Integer[indexForNullsRow.length];
         int t = 0;
         for (int i = 0; i < index.length; i++) {
             index[i] = i;
         }
         shuffle(index);
-        for (int i = 0; i < w.length; i++) {
-            for (int j = 0; j < w[i].length; j++) {
-                if (w[i][j] != null) {
-                    temp[i][j] = new Actor(w[i][j].color);
-                    if (pleased(w, i, j, p)) {
+        for (int i = 0; i < world.length; i++) {
+            for (int j = 0; j < world[i].length; j++) {
+                if (world[i][j] != null) {
+                    temp[i][j] = new Actor(world[i][j].color);
+                    if (pleased(i, j, p)) {
                         temp[i][j].isSatisfied = true;
                     }
                 } else {
@@ -149,31 +157,37 @@ public class Neighbours extends Application {
                 }
             }
         }
-        t = 0;
+    }
+
+    void moveActors(Actor[][] temp, int numberOfNulls, int[] indexForNullsRow, int[] indexForNullsCol){
+        Integer[] indexX = new Integer[world.length*world.length];
+        for (int i = 1; i <= indexX.length; i++) {
+            indexX[i - 1] = i;
+        }
+        shuffle(indexX);
+        Integer[] indexY = new Integer[world.length*world.length];
+        for (int i = 1; i <= indexY.length; i++) {
+            indexY[i - 1] = i;
+        }
+        shuffle(indexY);
         int row;
         int col;
-        for (int i = 0; i < w.length; i++) {
-            for (int j = 0; j < w[i].length; j++) {
-                if (w[i][j] != null) {
-                    if(!w[i][j].isSatisfied) {
-                        if (t == index.length) {
-                            t = 0;
-                        }
-                        row = indexForNullsRow[t];
-                        col = indexForNullsCol[t];
-                        temp[row][col] = temp[i][j];
-                        temp[i][j] = null;
-                        indexForNullsRow[t] = i;
-                        indexForNullsCol[t] = j;
-                        t++;
+        int t = 0;
+        for (int j = 0; j < world.length*world.length; j++) {
+            if (world[indexX[j] % 300][indexY[j] % 300] != null) {
+                if(!world[indexX[j] % 300][indexY[j] % 300].isSatisfied) {
+                    if (t == numberOfNulls) {
+                        break;
                     }
+                    row = indexForNullsRow[t];
+                    col = indexForNullsCol[t];
+                    temp[row][col] = temp[indexX[j] % 300][indexY[j] % 300];
+                    temp[indexX[j] % 300][indexY[j] % 300] = null;
+                    t++;
                 }
             }
         }
-        return temp;
     }
-
-
 
     // Check if inside world
     boolean isValidLocation(int size, int row, int col) {
@@ -314,7 +328,7 @@ public class Neighbours extends Application {
     }
 
     long lastUpdateTime;
-    final long INTERVAL = 200_000_000;
+    final long INTERVAL = 100_000_000;
 
 
     @Override
