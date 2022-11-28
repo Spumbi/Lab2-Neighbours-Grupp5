@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf4bff32-45c3-4c8b-b927-20a2e2ecdc1f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neighbours.iml" beforeDir="false" afterPath="$PROJECT_DIR$/neighbours.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Neighbours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Neighbours.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "last_opened_file_path": "C:/School/Object Orienterad Programmering/Labs/Lab 2/Lab2-Neighbours - oförändrad (intellij)/neighbours-IntelliJ",
+    "last_opened_file_path": "C:/Users/Adam/Desktop/skolarbete/Kod/JavaLab/Lab2-Neighbours-Grupp5/neighbours-IntelliJ",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -87,7 +89,7 @@
     <configuration name="Neighbours" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Neighbours" />
       <module name="neighbours" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\david\javafx-sdk-19\lib --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\Adam\Desktop\openjfx-19_windows-x64_bin-sdk\javafx-sdk-19\lib --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

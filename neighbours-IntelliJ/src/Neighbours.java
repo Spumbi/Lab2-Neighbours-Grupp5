@@ -7,12 +7,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.Math.round;
 import static java.lang.Math.sqrt;
-import static java.lang.System.*;
+import static java.lang.System.exit;
+import static java.lang.System.out;
 
 /*
  *  Program to simulate segregation.
@@ -37,17 +37,14 @@ public class Neighbours extends Application {
         }
     }
 
-    // Below is the *only* accepted instance variable (i.e. variables outside any method)
-    // This variable may *only* be used in methods init() and updateWorld()
     Actor[][] world;              // The world is a square matrix of Actors
 
     // This is the method called by the timer to update the world
-    // (i.e move unsatisfied) approx each 1/60 sec.
+    // (i..e move unsatisfied) approx each 1/60 sec.
     void updateWorld() {
-        // % of surrounding neighbours that are like me
+        // % of neighbours required
         double threshold = 0.5;
 
-        // TODO update world
         world = alg(threshold);
     }
 
@@ -57,28 +54,23 @@ public class Neighbours extends Application {
     // That's why we must have "@Override" and "public" (just accept for now)
     @Override
     public void init() {
-        //test();    // <---------------- Uncomment to TEST!
-        // %-distribution of RED, BLUE and NONE
+        // distribution of RED, BLUE and NONE
         double[] dist = {0.25, 0.25, 0.5};
 
-        // Number of locations (places) in world (must be a square)
-        int nLocations = 90000;   // Should also try 90 000
+        // Number of locations in world (must be a square number)
+        int nLocations = 90000;
         out.println("Locations: " + nLocations);
 
-        // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
 
         shuffle(actors);
 
         world = toMatrix(actors);
 
-        // Should be last
         fixScreenSize(nLocations);
     }
 
     // ---------------  Methods ------------------------------
-
-    // TODO Many ...
     int getNulls(Actor[][] w) {
         int n = 0;
         for (int i = 0; i < w.length; i++) {
@@ -198,8 +190,6 @@ public class Neighbours extends Application {
     }
 
     // ----------- Utility methods -----------------
-
-    // TODO (general method possible reusable elsewhere)
     <T> void shuffle(T[] arr) {
         for (int i = arr.length; i > 1; i--) {
             int j = rand.nextInt(i);
@@ -265,13 +255,11 @@ public class Neighbours extends Application {
 //        out.println(!isValidLocation(size, -1, 0));
 //        out.println(!isValidLocation(size, 0, 3));
 
-        // TODO
         // %-distribution of RED, BLUE and NONE
         double[] dist = {0.4, 0.4, 0.2};
         // Number of locations (places) in world (must be a square)
         int nLocations = 100;   // Should also try 90 000
 
-        // TODO initialize the world
         Actor[] actors = generateDistribution(nLocations, dist);
         shuffle(actors);
         world = toMatrix(actors);
