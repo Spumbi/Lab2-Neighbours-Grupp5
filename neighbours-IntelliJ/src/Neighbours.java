@@ -47,8 +47,6 @@ public class Neighbours extends Application {
         // % of surrounding neighbours that are like me
         double threshold = 0.5;
 
-//        printActors(world);
-//        out.println("------");
         // TODO update world
         world = alg(threshold);
     }
@@ -58,15 +56,13 @@ public class Neighbours extends Application {
     // Method automatically called by JavaFX runtime
     // That's why we must have "@Override" and "public" (just accept for now)
     @Override
-
     public void init() {
         //test();    // <---------------- Uncomment to TEST!
         // %-distribution of RED, BLUE and NONE
         double[] dist = {0.25, 0.25, 0.5};
 
-        int size = 300;
         // Number of locations (places) in world (must be a square)
-        int nLocations = size*size;   // Should also try 90 000
+        int nLocations = 90000;   // Should also try 90 000
         out.println("Locations: " + nLocations);
 
         // TODO initialize the world
@@ -83,6 +79,18 @@ public class Neighbours extends Application {
     // ---------------  Methods ------------------------------
 
     // TODO Many ...
+    int getNulls(Actor[][] w) {
+        int n = 0;
+        for (int i = 0; i < w.length; i++) {
+            for (int j = 0; j < w[i].length; j++) {
+                if(w[i][j] == null){
+                    n++;
+                }
+            }
+        }
+        return n;
+    }
+
     Actor[] generateDistribution(int n, double[] d) {
         Actor[] array = new Actor[n];
         int dist1 = (int) StrictMath.round(n * d[0]);
@@ -210,6 +218,7 @@ public class Neighbours extends Application {
         return matrix;
     }
 
+    // Only used for testing
     void printActors(Actor[][] testWorld) {
         String print = "";
         String s;
@@ -237,18 +246,6 @@ public class Neighbours extends Application {
         }
     }
 
-    int getNulls(Actor[][] w) {
-        int n = 0;
-        for (int i = 0; i < w.length; i++) {
-            for (int j = 0; j < w[i].length; j++) {
-                if(w[i][j] == null){
-                    n++;
-                }
-            }
-        }
-        return n;
-    }
-
     // ------- Testing -------------------------------------
 
     // Here you run your tests i.e. call your logic methods
@@ -269,37 +266,23 @@ public class Neighbours extends Application {
 //        out.println(!isValidLocation(size, 0, 3));
 
         // TODO
-        //out.println("Neighbours: " + neighbours(testWorld, 0, 1));'
-//        printActors(testWorld);
-//        testWorld = alg(testWorld);
-//        printActors(testWorld);
-//        out.println(testWorld[0][1].isSatisfied);
-
-//        int length = 3;
-//        int i = 2;
-//        int j = 2;
-//        int varde = (i+1)*length*100000 + j;
-//        int col = varde % 100000;
-//        out.println("i: " + (((varde-col)/100000)/length - 1));
-//        out.println("j: " + col);
-
         // %-distribution of RED, BLUE and NONE
         double[] dist = {0.4, 0.4, 0.2};
         // Number of locations (places) in world (must be a square)
         int nLocations = 100;   // Should also try 90 000
 
         // TODO initialize the world
-//        Actor[] actors = generateDistribution(nLocations, dist);
-//        shuffle(actors);
-//        world = toMatrix(actors);
-//        printActors(world);
-//
-//        world = alg(world, th);
-//
-//        printActors(world);
-//        world = alg(world, th);
-//
-//        printActors(world);
+        Actor[] actors = generateDistribution(nLocations, dist);
+        shuffle(actors);
+        world = toMatrix(actors);
+        printActors(world);
+
+        world = alg(th);
+
+        printActors(world);
+        world = alg(th);
+
+        printActors(world);
 
 
         exit(0);
@@ -324,7 +307,6 @@ public class Neighbours extends Application {
 
     long lastUpdateTime;
     final long INTERVAL = 450_000_000;
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -355,7 +337,6 @@ public class Neighbours extends Application {
 
         timer.start();  // Start simulation
     }
-
 
     // Render the state of the world to the screen
     public void renderWorld(GraphicsContext g) {
