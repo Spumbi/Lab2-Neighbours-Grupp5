@@ -44,9 +44,8 @@ public class Neighbours extends Application {
     // This is the method called by the timer to update the world
     // (i.e move unsatisfied) approx each 1/60 sec.
     void updateWorld() {
-        int rNeighbours = 7;
         // % of surrounding neighbours that are like me
-        double threshold = 0.125 * rNeighbours;
+        double threshold = 0.5;
 
 //        printActors(world);
 //        out.println("------");
@@ -62,12 +61,8 @@ public class Neighbours extends Application {
 
     public void init() {
         //test();    // <---------------- Uncomment to TEST!
-        double empty = 0.25;
-        double redBlueRatio = 0.5;
-        double red = (1-empty)*redBlueRatio;
-        double blue = 1-empty-red;
         // %-distribution of RED, BLUE and NONE
-        double[] dist = {red, blue, empty};
+        double[] dist = {0.25, 0.25, 0.5};
 
         int size = 300;
         // Number of locations (places) in world (must be a square)
@@ -328,7 +323,7 @@ public class Neighbours extends Application {
     }
 
     long lastUpdateTime;
-    final long INTERVAL = 100_000_000;
+    final long INTERVAL = 450_000_000;
 
 
     @Override
